@@ -14,7 +14,7 @@ class Rotate_Image_48 {
             System.out.println();
         }
     }
-    public void rotate(int[][] matrix) {
+    public void rotate1(int[][] matrix) {
         int[][]ans=new int[matrix.length][matrix.length];
         for(int i=0;i<matrix.length;i++){
             for (int j=0;j<matrix.length;j++){
@@ -24,6 +24,26 @@ class Rotate_Image_48 {
         for(int i=0;i<matrix.length;i++){
             for (int j=0;j<matrix.length;j++){
                 matrix[i][j]=ans[i][j];
+            }
+        }
+    }
+    public void rotate(int[][] matrix) {
+        
+        for(int i=0;i<matrix.length;i++){
+            for (int j=i+1;j<matrix.length;j++){
+                int temp=matrix[i][j];
+                matrix[i][j]=matrix[j][i];
+                matrix[j][i]=temp;
+            }
+        }
+        for (int i=0;i<matrix.length;i++){
+            int l=0;int r=matrix.length-1;
+            while(l<r){
+                int temp=matrix[i][l];
+                matrix[i][l]=matrix[i][r];
+                matrix[i][r]=temp;
+                l++;
+                r--;
             }
         }
     }
