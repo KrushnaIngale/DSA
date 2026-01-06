@@ -8,6 +8,24 @@ class Pascals_triangle_118 {
     }
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>>ans=new ArrayList<>();
+        for(int i=1;i<=numRows;i++){
+            ans.add(genRow(i));
+        }
+        return ans;
+    }
+    List<Integer> genRow(int i){
+        List<Integer> temp=new ArrayList<>();
+        temp.add(1);
+        long ans=1;
+        for(int j=1;j<i;j++){
+            ans=ans*(i-j);
+            ans=ans/j;
+            temp.add((int)ans);
+        }
+        return temp;
+    }
+    public List<List<Integer>> generate1(int numRows) {
+        List<List<Integer>>ans=new ArrayList<>();
         if(numRows==0) return ans;
 
         List<Integer> firstRow=new ArrayList<>();
