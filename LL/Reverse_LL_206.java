@@ -31,4 +31,14 @@ public class Reverse_LL_206 {
         }
         return prev;
     }
+    public ListNode reverseList1(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode newHead=reverseList(head.next);
+        ListNode next=head.next;
+        next.next=head;
+        head.next=null;
+        return newHead;
+    }
 }
