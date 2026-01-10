@@ -17,7 +17,8 @@ public class Delete_DLL {
 
         // head=deleteHead(head);
         // head=deleteTail(head);
-        head=deleteKthElement(head,4);
+        // head=deleteKthElement(head,4);
+        head=deleteNode(head,9);
 
         for(ListNode temp=head;temp!=null;temp=temp.next){
             System.out.print(temp.data+ " ");
@@ -67,6 +68,29 @@ public class Delete_DLL {
             temp.next=null;
             temp.prev=null;
         }
+        return head;
+    }
+    static ListNode deleteNode(ListNode head,int node){
+        if(head==null || head.next==null) return null;
+        if (head.data == node) {
+            head = head.next;
+            if (head != null) head.prev = null;
+            return head;
+        }
+        ListNode temp=head;
+        ListNode prev=null;
+        while(temp!=null && temp.data!=node){
+            temp=temp.next;
+            prev=temp.prev;
+        }
+        if (temp == null) return head;
+
+        prev.next=temp.next;
+        if(temp.next!=null)
+            temp.next.prev=prev;
+        temp.next=null;
+        temp.prev=null;
+
         return head;
     }
 }
