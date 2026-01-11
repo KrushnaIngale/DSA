@@ -1,6 +1,6 @@
 import java.util.HashSet;
 
-public class LL_Cycle {
+public class LL_Cycle2_142 {
     static class ListNode {
         int val;
         ListNode next;
@@ -18,29 +18,38 @@ public class LL_Cycle {
         head.next.next.next = new ListNode(9);
         head.next.next.next.next = head.next.next;
 
-        LL_Cycle obj = new LL_Cycle();
-        System.out.println(hasCycle(head));
+        LL_Cycle_141 obj = new LL_Cycle_141();
+        System.out.println(detectCycle(head).val);
     }
-    public static boolean hasCycle(ListNode head) {
+    
+    static ListNode detectCycle(ListNode head) {
         ListNode slow=head;
         ListNode fast=head;
-        while(fast!=null && fast.next!=null){
+        while(fast!=null&&fast.next!=null){
+            
             slow=slow.next;
             fast=fast.next.next;
-            if(slow==fast)return true;
+            if(slow==fast){
+                slow=head;
+                while(slow!=fast){
+                    slow=slow.next;
+                    fast=fast.next;
+                }
+                return fast;
+            }
         }
-        return false;
+        return null;
     }
-
-    public static boolean hasCycle1(ListNode head) {
+    static ListNode detectCycle1(ListNode head) {
         HashSet<ListNode> mpp = new HashSet<>();
         ListNode temp = head;
         while (temp != null) {
             if (mpp.contains(temp))
-                return true;
+                return temp;
             mpp.add(temp);
             temp = temp.next;
         }
-        return false;
+        return null;
     }
+    
 }
