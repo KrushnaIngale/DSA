@@ -20,8 +20,8 @@ public class Insert_DLL {
         // head=insertHead(head,0);
         // head=insertTail(head,4);
         // head=insertBeforeTail(head,37);
-        head=insertKthElement(head,37,5);
-        // head=insert(head,9);
+        // head=insertKthElement(head,37,5);
+        head=insertBeforeNode(head,37,9);
 
         for(ListNode temp=head;temp!=null;temp=temp.next){
             System.out.print(temp.data+ " ");
@@ -72,7 +72,20 @@ public class Insert_DLL {
         
         return head;
     }
-    static ListNode insert(ListNode head,int val){
+    static ListNode insertBeforeNode(ListNode head,int val,int node){
+        if(head==null) return new ListNode(val,null,null);
+        if(head.data==node) return insertHead(head,val);
+
+        ListNode temp=head;
+        while(temp.next.data!=node && temp.next!=null){
+            temp=temp.next;
+        }
+        if(temp.next==null) return head;
+
+        ListNode newNode=new ListNode(val,temp.next,temp);
+        temp.next.prev=newNode;
+        temp.next=newNode;
+    
         return head;
     }
 }
