@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Odd_Even_LL_328 {
     static class ListNode {
         int val;
@@ -36,6 +39,36 @@ public class Odd_Even_LL_328 {
             even=even.next;
         }
         odd.next=temp;
+        return head;
+    }
+
+    public ListNode oddEvenList1(ListNode head) {
+        if(head == null || head.next==null){
+            return head;
+        }
+        ListNode temp=head;
+        int count=1;
+        List<ListNode>even=new ArrayList<>();
+        List<ListNode>odd=new ArrayList<>();
+        while(temp!=null){
+            if(count%2==1){
+                odd.add(temp);
+            }else{
+                even.add(temp);
+            }
+            count++;
+            temp=temp.next;
+        }
+        temp=head;
+        for(int i=1;i<odd.size();i++){
+            temp.next=odd.get(i);
+            temp=temp.next;
+        }
+        for(int i=0;i<even.size();i++){
+            temp.next=even.get(i);
+            temp=temp.next;
+        }
+        temp.next=null;
         return head;
     }
 }
