@@ -18,7 +18,7 @@ public class Sort_List_148 {
             System.out.print(curr.val+" ");
         }
     }
-    public ListNode sortList(ListNode head) {
+    public ListNode sortList1(ListNode head) {
         if (head == null || head.next == null) return head;
 
         ArrayList<ListNode>ls=new ArrayList<>();
@@ -36,5 +36,46 @@ public class Sort_List_148 {
         }
         temp.next=null;
         return head;
+    }
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode mid=findMiddle(head);
+        ListNode left=head;
+        ListNode right=mid.next;
+        mid.next=null;
+        left=sortList(left);
+        right=sortList(right);
+        
+        return merge(left,right);
+    }
+    ListNode merge(ListNode left,ListNode right){
+        ListNode dummy=new ListNode(-1);
+        ListNode temp=dummy;
+        while(left!=null && right!=null){
+            if(left.val<right.val){
+                temp.next=left;
+                left=left.next;
+            }else{
+                temp.next=right;
+                right=right.next;
+            }
+            temp=temp.next;
+        }
+        if(left!=null){
+            temp.next=left;
+        }
+        else{
+            temp.next=right;
+        }
+        return dummy.next;
+    }
+    ListNode findMiddle(ListNode head){
+        ListNode slow=head;
+        ListNode fast=head.next;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
     }
 }
