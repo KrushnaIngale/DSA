@@ -49,4 +49,55 @@ public class Add_2_LL_2 {
         }
         return head.next;
     }
+    public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
+        
+        ListNode temp=new ListNode(-1);
+        ListNode dummy=temp;
+        int carry=0;
+        while(l1!=null && l2!=null){
+            int sum=l1.val+l2.val;
+            sum=sum+carry;
+            int rem=sum%10;
+            
+            if(sum<10){
+                temp.next=new ListNode(sum);
+            }else{
+                temp.next=new ListNode(rem);
+            }
+            carry=sum/10;
+            l1=l1.next;
+            l2=l2.next;
+            temp=temp.next;
+        }
+        while(l1!=null){
+            int sum=l1.val;
+            sum=sum+carry;
+            int rem=sum%10;
+            if(sum<10){
+                temp.next=new ListNode(sum);
+            }else{
+                temp.next=new ListNode(rem);
+            }
+            carry=sum/10;
+            l1=l1.next;
+            temp=temp.next;
+        }
+        while(l2!=null){
+            int sum=l2.val;
+            sum=sum+carry;
+            int rem=sum%10;
+            if(sum<10){
+                temp.next=new ListNode(sum);
+            }else{
+                temp.next=new ListNode(rem);
+            }
+            carry=sum/10;
+            l2=l2.next;
+            temp=temp.next;
+        }
+        if(carry!=0){
+            temp.next=new ListNode(carry);
+        }
+        return dummy.next;
+    }
 }
