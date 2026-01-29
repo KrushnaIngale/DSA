@@ -6,6 +6,14 @@ public class Rotate_Strings_796 {
     }
 
     public boolean rotateString(String s, String goal) {
+        if(s.length()!=goal.length()) return false;
+
+        String ans=s+s;
+        
+        return ans.contains(goal);
+    }
+
+    public boolean rotateString2(String s, String goal) {
         int n=s.length();
         StringBuilder sb=new StringBuilder(s);
         for(int i=0;i<n;i++){
