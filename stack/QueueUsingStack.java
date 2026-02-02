@@ -33,6 +33,8 @@ import java.util.Stack;public class QueueUsingStack {
         System.out.println(q.top());
         System.out.println(q.pop());
         System.out.println(q.top());
+        System.out.println(q.pop());
+        System.out.println(q.top());
         
     }
 }
