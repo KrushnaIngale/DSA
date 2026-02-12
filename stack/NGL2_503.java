@@ -1,6 +1,12 @@
+import java.util.Stack;
 public class NGL2_503 {
     public static void main(String [] args){
-        
+        int[] nums={1,2,1};
+        NGL2_503 n=new NGL2_503();
+        int[] ans=n.nextGreaterElements(nums);  
+        for(int i=0;i<nums.length;i++){
+            System.out.print(ans[i]+" ");
+        }
     }
     public int[] nextGreaterElements(int[] nums) {
         int n=nums.length;
