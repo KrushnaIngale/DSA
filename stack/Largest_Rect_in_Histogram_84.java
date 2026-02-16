@@ -7,6 +7,26 @@ public class Largest_Rect_in_Histogram_84 {
         System.out.println(l.largestRectangleArea(heights));
     }
     public int largestRectangleArea(int[] heights) {
+        Stack<Integer>st=new Stack<>();
+        int maxArea=0;
+        for(int i=0;i<heights.length;i++){
+            while(!st.isEmpty() && heights[st.peek()]>=heights[i]){
+                int el=st.pop();
+                int NSR=i;
+                int NSL=st.isEmpty()?-1:st.peek();
+                maxArea=Math.max(maxArea,heights[el]*(NSR-NSL-1));
+            }
+            st.push(i);
+        }
+        while(!st.isEmpty()){
+            int el=st.pop();
+            int NSR=heights.length;
+            int NSL=st.isEmpty()?-1:st.peek();
+            maxArea=Math.max(maxArea,heights[el]*(NSR-NSL-1));
+        }
+        return maxArea;
+    }
+    public int largestRectangleArea1(int[] heights) {
         int[] NSR=getNSR(heights);
         int[] NSL=getNSL(heights);
         int maxArea=0;
