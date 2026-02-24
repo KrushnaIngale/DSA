@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+import java.util.List;
+
+//  * Definition for a binary tree node.
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+ 
+public class Preorder_traversal_144 {
+    public static void main(String[] args) {
+        TreeNode root=new TreeNode(1);
+        root.left=new TreeNode(2);
+        root.left.left=new TreeNode(4);
+        root.right=new TreeNode(2);
+        root.right.left=new TreeNode(3);
+        Preorder_traversal_144 obj=new Preorder_traversal_144();
+        List<Integer> list=obj.preorderTraversal(root);
+        System.out.println(list);
+    }
+    List<Integer> tree;
+    public List<Integer> preorderTraversal(TreeNode root) {
+        tree=new ArrayList<>();
+        preorder(root);
+        return tree;
+    }
+    void preorder(TreeNode root){
+        if(root==null)  return;
+
+        tree.add(root.val);
+        preorder(root.left);
+        preorder(root.right);
+    }
+}
