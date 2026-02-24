@@ -16,6 +16,7 @@ class TreeNode {
 }
  
 public class Preorder_traversal_144 {
+    List<Integer> tree;
     public static void main(String[] args) {
         TreeNode root=new TreeNode(1);
         root.left=new TreeNode(2);
@@ -26,7 +27,7 @@ public class Preorder_traversal_144 {
         List<Integer> list=obj.preorderTraversal(root);
         System.out.println(list);
     }
-    List<Integer> tree;
+    
     public List<Integer> preorderTraversal(TreeNode root) {
         tree=new ArrayList<>();
         preorder(root);
