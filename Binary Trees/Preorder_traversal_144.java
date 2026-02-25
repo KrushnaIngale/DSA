@@ -40,4 +40,22 @@ public class Preorder_traversal_144 {
         preorder(root.left);
         preorder(root.right);
     }
+
+    public List<Integer> preorderTraversal1(TreeNode root) {
+        List<Integer> tree=new ArrayList<>();
+        if(root==null)  return tree;
+        Stack<TreeNode>st=new Stack<>();
+        st.push(root);
+        while(!st.isEmpty()){
+            root=st.pop();
+            tree.add(root.val);
+            if(root.right!=null){
+                st.push(root.right);
+            }
+            if(root.left!=null){
+                st.push(root.left);
+            }
+        }
+        return tree;
+    }
 }
