@@ -1,1 +1,1 @@
-root.left.left=new TreeNode(4);
+root
