@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class TreeNode{
     int val;
     TreeNode left;
@@ -15,7 +18,7 @@ public class Recover_BST_99 {
     TreeNode prev=null;
     TreeNode first=null;
     TreeNode second=null;
-
+// optimized
     public void recoverTree(TreeNode root) {
         inOrder(root);
 
@@ -55,5 +58,32 @@ public class Recover_BST_99 {
         System.out.print(root.val + " ");
         print(root.right);
         
+    }
+// better
+    public void recoverTree1(TreeNode root) {
+        List<TreeNode>inorder=new ArrayList<>();
+        inOrder(root,inorder);
+
+        TreeNode first=null;
+        TreeNode second=null;
+
+        for(int i=0;i<inorder.size()-1;i++){
+            if(inorder.get(i).val>inorder.get(i+1).val){
+                if(first==null){
+                    first=inorder.get(i);
+                }
+                second=inorder.get(i+1);
+            }
+        }
+
+        int temp=first.val;
+        first.val=second.val;
+        second.val=temp;
+    }
+    void inOrder(TreeNode root,List<TreeNode>inorder){
+        if(root==null) return ;
+        inOrder(root.left,inorder);
+        inorder.add(root);
+        inOrder(root.right,inorder);
     }
 }
